@@ -30,7 +30,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json({ limit: '50mb' })); 
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
-app.use(express.static(path.join(__dirname, '../frontend/public')))
+app.use(express.static(path.join(__dirname, '../frontend/build')))
 
 
 //routes
@@ -38,8 +38,9 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/category', categoryRoutes);
 app.use('/api/v1/product', productRoutes);
 
+//rest api
 app.use('*', function(req, res){
-  res.sendFile(path.join(__dirname, '../frontend/public/index.html'));
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
 });
 
 // Routes
